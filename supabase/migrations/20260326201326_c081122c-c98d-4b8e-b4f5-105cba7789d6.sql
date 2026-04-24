@@ -1,0 +1,1 @@
+ALTER TABLE public.blog_author_profiles ADD COLUMN IF NOT EXISTS tenant_id uuid REFERENCES public.tenants(id) ON DELETE CASCADE DEFAULT NULL;

@@ -1,0 +1,1193 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import './styles/tenant-themes.css';
+@import './styles/planner-themes.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 20% 98%;
+    --foreground: 222 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 30% 12%;
+
+    --primary: 222 55% 22%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 20% 94%;
+    --secondary-foreground: 222 40% 24%;
+
+    --muted: 30 12% 95%;
+    --muted-foreground: 222 10% 46%;
+
+    --accent: 14 90% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 12% 90%;
+    --input: 30 12% 90%;
+    --ring: 222 55% 22%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 30 15% 97%;
+    --sidebar-foreground: 222 20% 26%;
+    --sidebar-primary: 222 55% 22%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 12% 94%;
+    --sidebar-accent-foreground: 222 30% 12%;
+    --sidebar-border: 30 12% 90%;
+    --sidebar-ring: 222 55% 22%;
+
+    /* Custom tokens */
+    --hero-gradient: linear-gradient(160deg, hsl(222 55% 18%), hsl(222 45% 12%));
+    --card-shadow: 0 1px 3px hsl(222 30% 12% / 0.04), 0 1px 2px hsl(222 30% 12% / 0.03);
+    --card-shadow-hover: 0 24px 48px -12px hsl(222 30% 12% / 0.12), 0 0 0 1px hsl(222 30% 12% / 0.03);
+    --shadow-glow: 0 0 60px -12px hsl(222 55% 22% / 0.2);
+    --shadow-elevated: 0 8px 30px hsl(222 30% 12% / 0.08);
+    --success: 152 60% 40%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --info: 210 92% 50%;
+    --info-foreground: 0 0% 100%;
+    --danger: 0 72% 51%;
+    --danger-foreground: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 222 30% 7%;
+    --foreground: 30 12% 93%;
+    --card: 222 25% 11%;
+    --card-foreground: 30 12% 93%;
+    --popover: 222 25% 11%;
+    --popover-foreground: 30 12% 93%;
+    --primary: 222 50% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 25% 16%;
+    --secondary-foreground: 30 12% 88%;
+    --muted: 222 25% 16%;
+    --muted-foreground: 222 10% 55%;
+    --accent: 14 90% 62%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 222 25% 18%;
+    --input: 222 25% 18%;
+    --ring: 222 50% 45%;
+    --success: 152 50% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 0 0% 12%;
+    --info: 210 92% 60%;
+    --info-foreground: 0 0% 100%;
+    --danger: 0 62% 50%;
+    --danger-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3 {
+    font-family: 'DM Serif Display', serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(222 55% 30%), hsl(14 90% 58%));
+  }
+  .bg-hero-gradient {
+    background: linear-gradient(160deg, hsl(222 55% 18%), hsl(222 45% 12%));
+  }
+  .card-hover {
+    @apply transition-all duration-500 ease-out;
+    box-shadow: var(--card-shadow);
+  }
+  .card-hover:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-4px);
+  }
+  .glass {
+    background: hsl(0 0% 100% / 0.06);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid hsl(0 0% 100% / 0.1);
+  }
+  .glass-light {
+    background: hsl(0 0% 100% / 0.75);
+    backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid hsl(0 0% 100% / 0.5);
+  }
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 25%,
+      hsl(0 0% 100% / 0.08) 50%,
+      transparent 75%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .section-divider {
+    @apply relative;
+  }
+  .section-divider::before {
+    content: '';
+    @apply absolute top-0 left-1/2 -translate-x-1/2 w-12 h-0.5 rounded-full;
+    background: hsl(var(--primary));
+  }
+}
+
+/* Hide scrollbar for horizontal scroll sections */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Booking.com-style: hidden scrollbar that fades in on hover */
+.scrollbar-hover {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  transition: scrollbar-color 0.2s ease;
+}
+.scrollbar-hover::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+.scrollbar-hover::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+.scrollbar-hover:hover {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground) / 0.35) transparent;
+}
+.scrollbar-hover:hover::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.35);
+}
+.scrollbar-hover:hover::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.55);
+}
+
+/* Calendar dropdown styling */
+.rdp-dropdown_month select,
+.rdp-dropdown_year select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 0.3rem 1.75rem 0.3rem 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.4rem center;
+  background-size: 11px;
+  box-shadow: 0 1px 2px hsl(var(--foreground) / 0.04);
+}
+.rdp-dropdown_month select:hover,
+.rdp-dropdown_year select:hover {
+  border-color: hsl(var(--primary) / 0.5);
+  background-color: hsl(var(--primary) / 0.03);
+}
+.rdp-dropdown_month select:focus,
+.rdp-dropdown_year select:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+}
+.rdp-caption_dropdowns {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* Hide the duplicate caption label when dropdowns are visible */
+.rdp-caption_dropdowns + .rdp-caption_label {
+  display: none !important;
+}
+
+/* Subtle scrollbar — invisible until hover, ultra-thin when shown */
+.scrollbar-subtle {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+.scrollbar-subtle:hover,
+.scrollbar-subtle:focus-within {
+  scrollbar-color: hsl(var(--border)) transparent;
+}
+
+/* Policy page prose — lightweight typography for tenant policy markdown. */
+.policy-prose {
+  color: hsl(var(--foreground));
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+.policy-prose h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+.policy-prose h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.policy-prose p { margin-bottom: 1rem; }
+.policy-prose ul, .policy-prose ol {
+  margin: 0.75rem 0 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.policy-prose ul { list-style: disc; }
+.policy-prose ol { list-style: decimal; }
+.policy-prose li::marker { color: hsl(var(--muted-foreground)); }
+.policy-prose strong { font-weight: 600; color: hsl(var(--foreground)); }
+.policy-prose em { font-style: italic; }
+.policy-prose hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid hsl(var(--border));
+}
+.policy-prose a { color: hsl(var(--primary)); }
+.policy-prose a:hover { text-decoration: underline; }
+.scrollbar-subtle::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.scrollbar-subtle::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-subtle::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 9999px;
+  transition: background 0.3s ease;
+}
+.scrollbar-subtle:hover::-webkit-scrollbar-thumb,
+.scrollbar-subtle:focus-within::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+}
+.scrollbar-subtle::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Soft fade mask at top/bottom of scroll area */
+.scroll-fade-mask {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 12px, black calc(100% - 12px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, black 12px, black calc(100% - 12px), transparent 100%);
+}
+/* ── Tenant skin typography ─────────────────────────────────────────── */
+/* Each skin sets --font-heading / --font-body via inline style on the
+   .tenant-skin-root wrapper. Headings and body inherit the matching
+   stack so each skin reads visually distinct without per-component edits. */
+.tenant-skin-root {
+  font-family: var(--font-body, inherit);
+}
+.tenant-skin-root h1,
+.tenant-skin-root h2,
+.tenant-skin-root h3,
+.tenant-skin-root h4,
+.tenant-skin-root h5,
+.tenant-skin-root h6,
+.tenant-skin-root .font-heading {
+  font-family: var(--font-heading, inherit);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Hybrid Skin — body restyle scope
+
+   Applied via the `.hybrid-skin-active` wrapper rendered by HybridLayout.
+   Goal: re-skin functional pages (Flights / Hotels / Tours results,
+   filter sidebars, detail, booking, dashboard) so they feel editorial
+   even though the underlying TSX is shared with the platform.
+   ──────────────────────────────────────────────────────────────────── */
+.hybrid-skin-active {
+  font-family: var(--font-body, inherit);
+}
+.hybrid-skin-active h1,
+.hybrid-skin-active h2,
+.hybrid-skin-active h3,
+.hybrid-skin-active h4,
+.hybrid-skin-active h5,
+.hybrid-skin-active h6 {
+  font-family: var(--font-heading, inherit);
+  letter-spacing: -0.015em;
+}
+
+/* Strip the platform's dark gradient hero band that wraps Flights initial
+   state — Hybrid uses HybridPageHeader / HybridLayout chrome instead. */
+.hybrid-skin-active .bg-gradient-to-b.from-slate-50,
+.hybrid-skin-active [class*="dark:from-background"][class*="via-background"][class*="to-background"] {
+  background: transparent !important;
+}
+
+/* Soften every shadcn Card surface: remove harsh borders, swap to
+   ambient soft shadow + 1rem radius for editorial feel. */
+.hybrid-skin-active [data-slot="card"],
+.hybrid-skin-active .rounded-xl.bg-card,
+.hybrid-skin-active .rounded-2xl.bg-card,
+.hybrid-skin-active .rounded-lg.bg-card {
+  border-color: hsl(var(--border) / 0.5);
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary) / 0.04),
+    0 12px 32px -16px hsl(var(--primary) / 0.10),
+    0 4px 12px -6px hsl(var(--foreground) / 0.05);
+  border-radius: 1rem;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.hybrid-skin-active [data-slot="card"]:hover,
+.hybrid-skin-active .group\/flight-card:hover [data-slot="card"] {
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary) / 0.08),
+    0 24px 48px -20px hsl(var(--primary) / 0.18),
+    0 8px 20px -10px hsl(var(--foreground) / 0.08);
+}
+
+/* Result cards (flight/hotel/tour) — refined editorial surface */
+.hybrid-skin-active .group\/flight-card,
+.hybrid-skin-active [class*="HotelCard"],
+.hybrid-skin-active article[class*="rounded"][class*="border"][class*="bg-card"] {
+  border-radius: 1.25rem;
+}
+
+/* Filter sidebar — glass-morphism panel */
+.hybrid-skin-active aside[class*="bg-card"],
+.hybrid-skin-active aside [class*="bg-card"],
+.hybrid-skin-active .sticky[class*="bg-card"] {
+  background: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary) / 0.04),
+    0 16px 40px -20px hsl(var(--primary) / 0.10);
+}
+
+/* Sticky route summary bar (post-search) — primary-tinted glass */
+.hybrid-skin-active .sticky.top-0,
+.hybrid-skin-active .sticky[class*="z-"][class*="bg-"] {
+  background: hsl(var(--background) / 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+}
+
+/* Primary buttons get a gentle primary→accent gradient + soft glow */
+.hybrid-skin-active button[class*="bg-primary"]:not([class*="bg-primary/"]):not([disabled]),
+.hybrid-skin-active a[class*="bg-primary"]:not([class*="bg-primary/"]) {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.88) 100%);
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary-foreground) / 0.12) inset,
+    0 8px 20px -8px hsl(var(--primary) / 0.45);
+}
+.hybrid-skin-active button[class*="bg-primary"]:not([disabled]):hover,
+.hybrid-skin-active a[class*="bg-primary"]:hover {
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary-foreground) / 0.16) inset,
+    0 14px 28px -10px hsl(var(--primary) / 0.55);
+  transform: translateY(-1px);
+}
+
+/* Inputs — softer, editorial */
+.hybrid-skin-active input:not([type="checkbox"]):not([type="radio"]),
+.hybrid-skin-active select,
+.hybrid-skin-active textarea {
+  border-radius: 0.75rem;
+}
+
+/* Sort tab pills + smart chips — softer */
+.hybrid-skin-active [role="tablist"],
+.hybrid-skin-active .inline-flex[class*="rounded-full"][class*="bg-muted"] {
+  background: hsl(var(--muted) / 0.6);
+  backdrop-filter: blur(8px);
+}
+
+/* Editorial accent rule under section headings */
+.hybrid-skin-active section > h2:first-child::after,
+.hybrid-skin-active .container > h2:first-child::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+  margin-top: 0.5rem;
+}
+
+/* Tame extreme drop-shadows that the platform pages add inline */
+.hybrid-skin-active [class*="shadow-[0_30px_80px"],
+.hybrid-skin-active [class*="drop-shadow-[0_4px_20px"] {
+  filter: none !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Hybrid Skin — Agent Dashboard interior
+
+   Restyles the Dashboard shell, sidebar, stat cards, welcome banner,
+   recent-bookings list, bookings table and Reissue/Refund tiles so they
+   match the Hybrid editorial language without rewriting Dashboard.tsx.
+   Scoped strictly to .hybrid-skin-active to leave platform tenants alone.
+   ──────────────────────────────────────────────────────────────────── */
+
+/* Welcome banner — editorial gradient with subtle texture */
+.hybrid-skin-active .rounded-2xl.bg-gradient-to-r.from-primary {
+  background: linear-gradient(120deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%) !important;
+  border-radius: 1.5rem !important;
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary) / 0.10) inset,
+    0 24px 48px -20px hsl(var(--primary) / 0.40),
+    0 8px 20px -10px hsl(var(--accent) / 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.hybrid-skin-active .rounded-2xl.bg-gradient-to-r.from-primary h1 {
+  font-family: var(--font-heading, inherit);
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+/* Stat cards — taller editorial feel with primary tint left rail */
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-5 [data-slot="card"] {
+  border-radius: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--card)) 0%,
+    hsl(var(--primary) / 0.025) 100%
+  );
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-5 [data-slot="card"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent)));
+  opacity: 0.4;
+  transition: opacity 0.25s ease;
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-5 [data-slot="card"]:hover::before {
+  opacity: 1;
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-5 [data-slot="card"] p.text-xl,
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-5 [data-slot="card"] p.text-2xl {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-5 [data-slot="card"] p.text-xs.text-muted-foreground {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  font-size: 10px;
+  margin-top: 0.4rem;
+}
+
+/* Sidebar shell — glass surface, editorial divider */
+.hybrid-skin-active .sticky.top-20.overflow-hidden {
+  background: hsl(var(--card) / 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: 1.5rem;
+}
+
+/* Sidebar active nav item — gradient pill */
+.hybrid-skin-active nav button.bg-primary.text-primary-foreground {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.88) 100%) !important;
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary-foreground) / 0.15) inset,
+    0 6px 16px -6px hsl(var(--primary) / 0.45);
+  border-radius: 0.875rem !important;
+}
+
+/* Sidebar wallet card — accent gradient */
+.hybrid-skin-active .rounded-xl.bg-gradient-to-br.from-primary\/5 {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.08) 0%, hsl(var(--accent) / 0.05) 100%) !important;
+  border: 1px solid hsl(var(--primary) / 0.15);
+  border-radius: 1rem !important;
+}
+.hybrid-skin-active .rounded-xl.bg-gradient-to-br.from-primary\/5 p.text-xl {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+}
+
+/* Recent bookings list rows — editorial hover with primary left line */
+.hybrid-skin-active .divide-y.divide-border > div.flex.items-center {
+  position: relative;
+  transition: background 0.2s ease, padding-left 0.2s ease;
+}
+.hybrid-skin-active .divide-y.divide-border > div.flex.items-center:hover {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--primary) / 0.05) 0%,
+    transparent 60%
+  ) !important;
+}
+
+/* Booking type icon tile — editorial gradient */
+.hybrid-skin-active .w-10.h-10.rounded-xl.bg-primary\/10,
+.hybrid-skin-active .w-9.h-9.rounded-lg.bg-primary\/10 {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.12) 0%, hsl(var(--accent) / 0.08) 100%) !important;
+  border: 1px solid hsl(var(--primary) / 0.10);
+}
+
+/* Bookings table — editorial header */
+.hybrid-skin-active table thead tr.bg-muted\/30 {
+  background: linear-gradient(180deg, hsl(var(--muted) / 0.4), hsl(var(--muted) / 0.15)) !important;
+}
+.hybrid-skin-active table thead th {
+  font-family: var(--font-body, inherit);
+  letter-spacing: 0.14em !important;
+  color: hsl(var(--muted-foreground));
+  border-bottom: 1px solid hsl(var(--primary) / 0.15);
+}
+.hybrid-skin-active table tbody tr:hover {
+  background: hsl(var(--primary) / 0.04) !important;
+}
+.hybrid-skin-active table tbody td {
+  border-bottom: 1px solid hsl(var(--border) / 0.4);
+}
+
+/* Tabs (All / Flights / Hotels / Tours) — editorial pill */
+.hybrid-skin-active [role="tablist"] {
+  background: hsl(var(--muted) / 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 0.2rem;
+}
+.hybrid-skin-active [role="tab"][data-state="active"] {
+  background: hsl(var(--card));
+  box-shadow: 0 2px 8px -2px hsl(var(--primary) / 0.18);
+  border-radius: 9999px;
+}
+
+/* Profile / Account detail card titles — serif accent */
+.hybrid-skin-active [data-slot="card-title"] {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+/* Section page headings (e.g. "All Bookings", "Profile Settings") */
+.hybrid-skin-active h2.text-xl.font-bold {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-size: 1.6rem;
+  line-height: 1.15;
+}
+
+/* Reissue / Refund booking tile rows */
+.hybrid-skin-active .rounded-xl.border.border-border:hover {
+  border-color: hsl(var(--primary) / 0.3) !important;
+  box-shadow: 0 4px 16px -8px hsl(var(--primary) / 0.18);
+}
+
+/* Affiliate quick card */
+.hybrid-skin-active [data-slot="card"].bg-gradient-to-r.from-primary\/5 {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.06) 0%, hsl(var(--accent) / 0.04) 100%) !important;
+  border: 1px solid hsl(var(--primary) / 0.15);
+}
+
+/* Empty state icon tiles — softer, editorial */
+.hybrid-skin-active .w-16.h-16.rounded-2xl.bg-muted {
+  background: linear-gradient(135deg, hsl(var(--muted) / 0.5) 0%, hsl(var(--primary) / 0.05) 100%) !important;
+  border: 1px solid hsl(var(--border) / 0.4);
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Hybrid Skin — Booking flow interior
+
+   Restyles the multi-step Flight/Hotel/Tour booking pages, the payment
+   page and the booking confirmation/e-ticket page so they match the
+   Hybrid editorial language. HybridLayout already injects its own
+   eyebrow + title band for /book routes, so legacy `bg-hero-gradient`
+   in-page heros are visually neutralised to avoid stacked banners.
+   No changes to live data flow — purely presentation.
+   ──────────────────────────────────────────────────────────────────── */
+
+/* Suppress legacy in-page hero on /book + /pay so HybridPageHeader is the
+   single editorial band. Keeps breadcrumb/back link visible. */
+.hybrid-skin-active .bg-hero-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--card) / 0.85) 0%,
+    hsl(var(--primary) / 0.04) 100%
+  ) !important;
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: 1.5rem;
+  margin: 0.75rem auto;
+  max-width: calc(100% - 2rem);
+}
+.hybrid-skin-active .bg-hero-gradient h1 {
+  color: hsl(var(--foreground)) !important;
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.hybrid-skin-active .bg-hero-gradient .text-primary-foreground,
+.hybrid-skin-active .bg-hero-gradient [class*="text-primary-foreground"] {
+  color: hsl(var(--foreground)) !important;
+}
+.hybrid-skin-active .bg-hero-gradient [class*="text-primary-foreground/70"],
+.hybrid-skin-active .bg-hero-gradient [class*="text-primary-foreground/80"] {
+  color: hsl(var(--muted-foreground)) !important;
+}
+/* Glass chips inside the legacy hero */
+.hybrid-skin-active .bg-hero-gradient [class*="bg-primary-foreground/15"],
+.hybrid-skin-active .bg-hero-gradient [class*="bg-primary-foreground/10"] {
+  background: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border) / 0.6) !important;
+  backdrop-filter: blur(8px);
+}
+
+/* Booking step indicator pills (1 / 2 / 3) */
+.hybrid-skin-active [class*="rounded-full"][class*="bg-primary"][class*="text-primary-foreground"]:where(
+  .w-8, .w-9, .w-10, .h-8, .h-9, .h-10
+) {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%) !important;
+  box-shadow: 0 6px 16px -8px hsl(var(--primary) / 0.55);
+}
+
+/* Passenger / Contact / Payment section cards — gentle gradient surface */
+.hybrid-skin-active [data-slot="card"].mb-6,
+.hybrid-skin-active form [data-slot="card"] {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--card)) 0%,
+    hsl(var(--primary) / 0.012) 100%
+  );
+  border-radius: 1.25rem;
+}
+.hybrid-skin-active [data-slot="card-header"] {
+  border-bottom: 1px solid hsl(var(--border) / 0.4);
+  padding-bottom: 1rem;
+}
+
+/* Section card titles — serif accent */
+.hybrid-skin-active [data-slot="card-title"] {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+/* Booking summary side rail */
+.hybrid-skin-active aside [data-slot="card"],
+.hybrid-skin-active .lg\:sticky [data-slot="card"] {
+  background: hsl(var(--card) / 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.55);
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 40px -24px hsl(var(--primary) / 0.18);
+}
+
+/* Total fare numerals — serif */
+.hybrid-skin-active [data-slot="card"] .text-2xl.font-bold,
+.hybrid-skin-active [data-slot="card"] .text-3xl.font-bold {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Payment method radio tiles */
+.hybrid-skin-active label[class*="border"][class*="rounded"]:has(input[type="radio"]) {
+  border-radius: 1rem !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.hybrid-skin-active label[class*="border"][class*="rounded"]:has(input[type="radio"]:checked) {
+  border-color: hsl(var(--primary) / 0.55) !important;
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.06) 0%, hsl(var(--accent) / 0.04) 100%) !important;
+  box-shadow: 0 8px 22px -12px hsl(var(--primary) / 0.30);
+}
+
+/* Confirmation success / pending hero medallion */
+.hybrid-skin-active .w-20.h-20.rounded-full.bg-primary\/10 {
+  background: radial-gradient(
+    circle at 30% 30%,
+    hsl(var(--primary) / 0.20),
+    hsl(var(--primary) / 0.06) 70%
+  ) !important;
+  box-shadow:
+    0 0 0 8px hsl(var(--primary) / 0.06),
+    0 24px 48px -20px hsl(var(--primary) / 0.40);
+}
+.hybrid-skin-active .w-20.h-20.rounded-full[class*="bg-amber-500/10"] {
+  background: radial-gradient(
+    circle at 30% 30%,
+    hsl(38 92% 55% / 0.22),
+    hsl(38 92% 55% / 0.06) 70%
+  ) !important;
+  box-shadow:
+    0 0 0 8px hsl(38 92% 55% / 0.06),
+    0 24px 48px -20px hsl(38 92% 55% / 0.35);
+}
+
+/* Confirmation booking-id chip — editorial monospace */
+.hybrid-skin-active .font-mono.bg-muted {
+  background: hsl(var(--primary) / 0.08) !important;
+  border: 1px solid hsl(var(--primary) / 0.18);
+  color: hsl(var(--primary)) !important;
+  letter-spacing: 0.06em;
+}
+
+/* E-ticket / segment detail tiles */
+.hybrid-skin-active .bg-muted\/50.rounded-lg {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--card)) 0%,
+    hsl(var(--primary) / 0.025) 100%
+  ) !important;
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: 1rem !important;
+}
+
+/* Final "Pay now / Confirm booking" CTA — premium gradient */
+.hybrid-skin-active button.w-full[class*="bg-primary"]:not([disabled]),
+.hybrid-skin-active button[class*="h-12"][class*="bg-primary"]:not([disabled]),
+.hybrid-skin-active button[class*="h-14"][class*="bg-primary"]:not([disabled]) {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%) !important;
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary-foreground) / 0.15) inset,
+    0 12px 28px -10px hsl(var(--primary) / 0.45);
+  letter-spacing: 0.01em;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Hybrid Skin — B2B Agent Dashboard (bespoke agent skin)
+
+   Restyles the agent shell (sidebar, top header, dashboard overview KPIs,
+   sales chart, recent-bookings table) and the Search & Book result card
+   so Hybrid agents have a visually distinct, editorial workspace —
+   different from both the platform B2B chrome and the consumer site.
+   Scoped strictly to .hybrid-skin-active. No logic touched: live KPIs,
+   wallet balance, bookings list, charts and live fare search all flow
+   through the same hooks (useB2B, useB2BCommissions, unified-flight-search).
+   ──────────────────────────────────────────────────────────────────── */
+
+/* Agent shell — soft editorial canvas with ambient gradient */
+.hybrid-skin-active.min-h-screen.flex.bg-background,
+.hybrid-skin-active .min-h-screen.flex.bg-background {
+  background:
+    radial-gradient(circle at 12% 0%, hsl(var(--primary) / 0.06), transparent 45%),
+    radial-gradient(circle at 100% 0%, hsl(var(--accent) / 0.05), transparent 50%),
+    hsl(var(--background));
+}
+
+/* Sidebar — glass-morphism rail with editorial divider */
+.hybrid-skin-active aside.hidden.lg\:flex.w-\[220px\] > .flex.flex-col.h-full.bg-sidebar,
+.hybrid-skin-active aside .bg-sidebar {
+  background: hsl(var(--card) / 0.78) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-right: 1px solid hsl(var(--border) / 0.45) !important;
+  position: relative;
+}
+.hybrid-skin-active aside .bg-sidebar::after {
+  content: "";
+  position: absolute;
+  top: 18%;
+  bottom: 18%;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    hsl(var(--primary) / 0.30),
+    hsl(var(--accent) / 0.20),
+    transparent
+  );
+}
+
+/* Sidebar nav — active item gets editorial gradient pill */
+.hybrid-skin-active nav button.bg-primary.text-primary-foreground {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%) !important;
+  border-radius: 0.875rem !important;
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary-foreground) / 0.18) inset,
+    0 8px 22px -10px hsl(var(--primary) / 0.45);
+  letter-spacing: 0.005em;
+}
+
+/* Top header — frosted band, editorial title typography */
+.hybrid-skin-active header.h-\[60px\].bg-sidebar\/85 {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--card) / 0.85),
+    hsl(var(--card) / 0.65)
+  ) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid hsl(var(--border) / 0.4) !important;
+}
+.hybrid-skin-active header.h-\[60px\] h1.text-base.font-bold {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  font-size: 1.05rem;
+  letter-spacing: -0.015em;
+}
+
+/* KPI tiles (4-up overview) — editorial gradient + serif numerals */
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-4 > .bg-card.rounded-2xl {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--card)) 0%,
+    hsl(var(--primary) / 0.025) 100%
+  ) !important;
+  border-radius: 1.5rem !important;
+  border-color: hsl(var(--border) / 0.6) !important;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-4 > .bg-card.rounded-2xl::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent)));
+  opacity: 0.45;
+  transition: opacity 0.25s ease;
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-4 > .bg-card.rounded-2xl:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 44px -22px hsl(var(--primary) / 0.22);
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-4 > .bg-card.rounded-2xl:hover::before {
+  opacity: 1;
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-4 > .bg-card.rounded-2xl .text-2xl.font-bold {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-4 > .bg-card.rounded-2xl .text-xs.font-medium.text-muted-foreground {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+  font-weight: 600;
+}
+.hybrid-skin-active .grid.grid-cols-2.lg\:grid-cols-4 .w-8.h-8.rounded-xl.bg-primary\/8 {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.14) 0%, hsl(var(--accent) / 0.10) 100%) !important;
+  color: hsl(var(--primary)) !important;
+  border: 1px solid hsl(var(--primary) / 0.18);
+}
+
+/* Sales overview / Top destinations / Recent bookings panels */
+.hybrid-skin-active .grid.grid-cols-1.lg\:grid-cols-5 > .bg-card.rounded-2xl,
+.hybrid-skin-active .grid.grid-cols-1.lg\:grid-cols-5 > .lg\:col-span-3.bg-card.rounded-2xl,
+.hybrid-skin-active .grid.grid-cols-1.lg\:grid-cols-5 > .lg\:col-span-2.bg-card.rounded-2xl {
+  background: hsl(var(--card) / 0.92) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.5rem !important;
+  border-color: hsl(var(--border) / 0.55) !important;
+  box-shadow: 0 18px 40px -28px hsl(var(--primary) / 0.18);
+}
+.hybrid-skin-active .bg-card.rounded-2xl h3.text-sm.font-bold {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}
+
+/* Recent-bookings table — editorial header */
+.hybrid-skin-active table thead tr.border-b th {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: hsl(var(--muted-foreground));
+  border-bottom: 1px solid hsl(var(--primary) / 0.15) !important;
+}
+.hybrid-skin-active table tbody tr:hover {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--primary) / 0.05) 0%,
+    transparent 70%
+  ) !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Hybrid Agent — Search & Book result card (PremiumFareCard) bespoke skin
+   ──────────────────────────────────────────────────────────────────── */
+
+/* Card surface — editorial double-layer */
+.hybrid-skin-active article.relative.rounded-2xl.bg-card.overflow-hidden {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--card)) 0%,
+    hsl(var(--primary) / 0.018) 100%
+  ) !important;
+  border: 1px solid hsl(var(--border) / 0.55) !important;
+  border-radius: 1.5rem !important;
+  position: relative;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.hybrid-skin-active article.relative.rounded-2xl.bg-card.overflow-hidden::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    hsl(var(--primary) / 0.18),
+    transparent 40%,
+    hsl(var(--accent) / 0.18) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.hybrid-skin-active article.relative.rounded-2xl.bg-card.overflow-hidden:hover {
+  transform: translateY(-2px);
+  border-color: hsl(var(--primary) / 0.35) !important;
+  box-shadow:
+    0 26px 48px -28px hsl(var(--primary) / 0.30),
+    0 8px 18px -10px hsl(var(--accent) / 0.18);
+}
+.hybrid-skin-active article.relative.rounded-2xl.bg-card.overflow-hidden:hover::before {
+  opacity: 1;
+}
+
+/* AI Pick / Cheapest / Fastest banner — richer gradient */
+.hybrid-skin-active article.relative.rounded-2xl.bg-card .bg-gradient-to-r.from-primary\/\[0\.05\] {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--primary) / 0.12) 0%,
+    hsl(var(--accent) / 0.08) 50%,
+    transparent 100%
+  ) !important;
+  border-bottom-color: hsl(var(--primary) / 0.22) !important;
+}
+.hybrid-skin-active article.relative.rounded-2xl.bg-card .bg-primary\/15 {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  letter-spacing: 0.06em;
+}
+
+/* Airline name — editorial serif */
+.hybrid-skin-active article.relative.rounded-2xl.bg-card .text-\[15px\].font-bold.text-foreground {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: -0.012em;
+}
+
+/* Airline logo tile — soft editorial frame */
+.hybrid-skin-active article.relative.rounded-2xl.bg-card .h-12.w-12.rounded-xl.bg-muted\/40 {
+  background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--primary) / 0.05) 100%) !important;
+  border: 1px solid hsl(var(--border) / 0.7) !important;
+  box-shadow: 0 4px 12px -6px hsl(var(--primary) / 0.15);
+}
+
+/* Big departure / arrival times — serif numerals */
+.hybrid-skin-active article.relative.rounded-2xl.bg-card .text-2xl.font-extrabold.tabular-nums {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  font-size: 1.65rem;
+}
+
+/* Route timeline dots — gradient pulse */
+.hybrid-skin-active article.relative.rounded-2xl.bg-card .h-2.w-2.rounded-full.bg-primary {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))) !important;
+  box-shadow: 0 0 0 4px hsl(var(--primary) / 0.10);
+}
+
+/* Sell fare price — large editorial serif numerals */
+.hybrid-skin-active article.relative.rounded-2xl.bg-card .text-2xl.font-extrabold.text-foreground.tabular-nums:not(:nth-of-type(1)),
+.hybrid-skin-active article.relative.rounded-2xl.bg-card [class*="text-3xl"][class*="font-extrabold"] {
+  font-family: var(--font-heading, inherit);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Select button — editorial gradient CTA */
+.hybrid-skin-active article.relative.rounded-2xl.bg-card button[class*="bg-primary"]:not([disabled]) {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%) !important;
+  border-radius: 0.875rem !important;
+  box-shadow:
+    0 1px 0 0 hsl(var(--primary-foreground) / 0.15) inset,
+    0 10px 24px -10px hsl(var(--primary) / 0.45);
+  letter-spacing: 0.02em;
+}
+
+/* Filters / sort / hero search bar inside Search & Book — glass surface */
+.hybrid-skin-active .bg-card.border.border-border\/60.rounded-2xl,
+.hybrid-skin-active .bg-card.border.border-border\/60.rounded-xl {
+  background: hsl(var(--card) / 0.92) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: hsl(var(--border) / 0.55) !important;
+}
+
+/* Sort pill row — active pill gets gradient */
+.hybrid-skin-active button[class*="rounded-full"][class*="bg-primary"][class*="text-primary-foreground"]:not([disabled]) {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%) !important;
+  box-shadow: 0 6px 14px -6px hsl(var(--primary) / 0.45);
+}
+
+/* ============================================================
+   AUTH / REGISTER SCREENS — editorial centered-card treatment.
+   Applied when /auth, /register-agent, /register-corporate
+   render under a Hybrid tenant.
+   ============================================================ */
+.hybrid-skin-active.min-h-screen.flex.items-center.justify-center {
+  position: relative;
+  background:
+    radial-gradient(ellipse at top, hsl(var(--primary) / 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom, hsl(var(--accent) / 0.06) 0%, transparent 60%),
+    hsl(var(--background)) !important;
+}
+
+.hybrid-skin-active.min-h-screen.flex.items-center.justify-center::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(hsl(var(--foreground) / 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hybrid-skin-active.min-h-screen.flex.items-center.justify-center > [data-slot="card"] {
+  position: relative;
+  z-index: 1;
+  background: hsl(var(--card) / 0.85) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid hsl(var(--border) / 0.5) !important;
+  border-radius: 1.25rem !important;
+  box-shadow:
+    0 30px 80px -30px hsl(var(--primary) / 0.25),
+    0 0 0 1px hsl(var(--border) / 0.3);
+}
+
+.hybrid-skin-active.min-h-screen.flex.items-center.justify-center [data-slot="card-title"] {
+  font-family: var(--font-heading, inherit);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   B2B SUB-PAGES — final polish for Bookings / Settings / Reports /
+   Customers / Staff / Support / PartnerApplications. All inherit
+   `.hybrid-skin-active` from B2BLayout. CorporateDashboard inherits
+   the same treatment.
+   ============================================================ */
+
+/* Status badges — editorial pill family */
+.hybrid-skin-active [data-slot="badge"][class*="bg-emerald"],
+.hybrid-skin-active [data-slot="badge"][class*="bg-green"] {
+  background: hsl(142 70% 45% / 0.12) !important;
+  color: hsl(142 70% 35%) !important;
+  border: 1px solid hsl(142 70% 45% / 0.3) !important;
+}
+.hybrid-skin-active [data-slot="badge"][class*="bg-amber"],
+.hybrid-skin-active [data-slot="badge"][class*="bg-yellow"] {
+  background: hsl(38 90% 55% / 0.12) !important;
+  color: hsl(38 90% 40%) !important;
+  border: 1px solid hsl(38 90% 55% / 0.3) !important;
+}
+.hybrid-skin-active [data-slot="badge"][class*="bg-destructive"],
+.hybrid-skin-active [data-slot="badge"][class*="bg-red"] {
+  background: hsl(var(--destructive) / 0.12) !important;
+  color: hsl(var(--destructive)) !important;
+  border: 1px solid hsl(var(--destructive) / 0.3) !important;
+}
+
+/* Settings forms — softer field treatment */
+.hybrid-skin-active form [data-slot="card"] {
+  background:
+    linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.92) 100%) !important;
+  border: 1px solid hsl(var(--border) / 0.55) !important;
+}
+.hybrid-skin-active form label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: hsl(var(--foreground) / 0.85);
+}
+
+/* Reports — chart container surface */
+.hybrid-skin-active [class*="recharts-wrapper"] {
+  filter: drop-shadow(0 4px 12px hsl(var(--primary) / 0.08));
+}
+.hybrid-skin-active [class*="recharts-cartesian-grid"] line {
+  stroke: hsl(var(--border) / 0.5);
+  stroke-dasharray: 3 3;
+}
+
+/* Empty-state illustrations — soften platform default */
+.hybrid-skin-active [data-slot="card"] .w-16.h-16.rounded-full.bg-muted,
+.hybrid-skin-active [data-slot="card"] .w-20.h-20.rounded-full.bg-muted {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--accent) / 0.06)) !important;
+}
+
+/* Section dividers within cards — subtle gradient line */
+.hybrid-skin-active [data-slot="card"] hr,
+.hybrid-skin-active [data-slot="card"] .border-t {
+  border-color: transparent !important;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.18), transparent);
+  height: 1px;
+}

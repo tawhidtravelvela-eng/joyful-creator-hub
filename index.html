@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Tenant-aware SEO bootstrap.
+      On platform hosts (localhost / *.lovable.app / travelvela.com) we keep
+      the Travel Vela defaults so SSR previews stay branded. On any other
+      host (a tenant's connected custom domain) we strip the platform title
+      + meta + OG/Twitter tags BEFORE React mounts so users and crawlers
+      never see "Travel Vela" flash on, e.g., southpointtravel.com.
+      TenantSeoHead then writes the real tenant title once branding loads.
+    -->
+    <script>
+      (function () {
+        try {
+          var h = window.location.hostname;
+          var isPlatform =
+            h === "localhost" ||
+            h === "127.0.0.1" ||
+            h.endsWith(".lovable.app") ||
+            h.endsWith(".lovableproject.com") ||
+            h === "travelvela.com" ||
+            h.endsWith(".travelvela.com");
+          if (isPlatform) return;
+          // Neutral placeholder — hostname only, no brand leakage.
+          document.documentElement.setAttribute("data-tenant-host", h);
+          document.title = h;
+          // Drop the platform-branded meta/OG/Twitter tags inserted below;
+          // TenantSeoHead will recreate them with tenant values.
+          var sel = [
+            'meta[name="description"]',
+            'meta[property="og:title"]',
+            'meta[property="og:description"]',
+            'meta[property="og:image"]',
+            'meta[name="twitter:title"]',
+            'meta[name="twitter:description"]',
+            'meta[name="twitter:image"]',
+            'meta[name="twitter:site"]'
+          ];
+          // Defer one tick so the parser has inserted the tags below.
+          document.addEventListener("DOMContentLoaded", function () {
+            sel.forEach(function (s) {
+              document.querySelectorAll(s).forEach(function (el) { el.remove(); });
+            });
+          });
+        } catch (_) { /* no-op */ }
+      })();
+    </script>
+    <title>Travel Vela - Book Flights at Best Prices</title>
+    <meta name="description" content="Travel Vela - Search, compare, and book flights at the best prices. Your trusted travel partner in Bangladesh.">
+    <meta name="author" content="Lovable" />
+
+    <!-- TODO: Update og:title to match your application name -->
+    
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bea2fee5-685e-47e0-9d64-c0fc3b243cc5/id-preview-35970cda--6a98950f-13c9-4587-ba34-224ac1908ce6.lovable.app-1772215963556.png">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/bea2fee5-685e-47e0-9d64-c0fc3b243cc5/id-preview-35970cda--6a98950f-13c9-4587-ba34-224ac1908ce6.lovable.app-1772215963556.png">
+    <meta property="og:title" content="Travel Vela - Book Flights at Best Prices">
+  <meta name="twitter:title" content="Travel Vela - Book Flights at Best Prices">
+  <meta property="og:description" content="Search, compare, and book flights at the best prices with Travel Vela.">
+  <meta name="twitter:description" content="Search, compare, and book flights at the best prices with Travel Vela.">
+</head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

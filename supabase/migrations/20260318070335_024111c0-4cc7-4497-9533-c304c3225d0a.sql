@@ -1,0 +1,1 @@
+UPDATE profiles SET user_type = 'b2b_agent', approval_status = 'approved', is_approved = true WHERE user_id = '8211de34-b203-48a4-bbb9-380920ebc17f';

@@ -1,0 +1,1 @@
+CREATE INDEX idx_attractions_name_trgm ON public.attractions USING gin(name gin_trgm_ops);
