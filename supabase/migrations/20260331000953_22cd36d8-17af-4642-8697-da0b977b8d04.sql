@@ -1,0 +1,11 @@
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-singapore.jpg' WHERE name = 'Singapore';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-bangkok.jpg' WHERE name = 'Bangkok';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-penang.jpg' WHERE name = 'Penang';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-langkawi.jpg' WHERE name = 'Langkawi';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-pattaya.jpg' WHERE name = 'Pattaya';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-paris.jpg' WHERE name = 'Paris';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-dubai.jpg' WHERE name = 'Dubai';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-london.jpg' WHERE name = 'London';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-tokyo.jpg' WHERE name = 'Tokyo';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-bali.jpg' WHERE name = 'Bali';
+UPDATE public.destinations SET image_url = 'https://vqvkgdjuzqmysmhhaswm.supabase.co/storage/v1/object/public/assets/destinations/dest-istanbul.jpg' WHERE name = 'Istanbul';

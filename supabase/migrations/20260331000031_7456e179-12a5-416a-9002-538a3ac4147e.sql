@@ -1,0 +1,3 @@
+UPDATE public.destinations SET image_url = 'https://images.unsplash.com/photo-1596604075071-101212b3ccab?w=600&q=80' WHERE name = 'Penang';
+UPDATE public.destinations SET image_url = 'https://images.unsplash.com/photo-1609946860441-a51ffcf22208?w=600&q=80' WHERE name = 'Langkawi';
+UPDATE public.destinations SET image_url = 'https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=600&q=80' WHERE name = 'Pattaya';

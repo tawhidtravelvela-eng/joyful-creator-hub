@@ -1,0 +1,1 @@
+UPDATE api_settings SET is_active = false WHERE provider = 'hotelston_hotel';

@@ -1,0 +1,1 @@
+UPDATE api_settings SET is_active = true, settings = '{"environment":"production"}'::jsonb WHERE provider = 'hotelston_hotel';

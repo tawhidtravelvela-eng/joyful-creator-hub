@@ -1,0 +1,1 @@
+ALTER TABLE public.tripjack_hotels ADD COLUMN IF NOT EXISTS hero_image_url text;

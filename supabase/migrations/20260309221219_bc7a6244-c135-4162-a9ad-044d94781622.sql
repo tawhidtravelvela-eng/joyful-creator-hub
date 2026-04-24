@@ -1,0 +1,30 @@
+
+-- Insert blog_posts
+INSERT INTO public.blog_posts (id, title, slug, excerpt, content, featured_image, category_id, tags, status, author_name, published_at, tenant_id, created_at) VALUES
+('73617487-4d29-4344-a639-667d8dccff7c', '10 Must-Know Tips for First-Time International Travelers', '10-tips-first-time-international-travelers', 'Planning your first trip abroad? These essential tips will help you navigate airports, currencies, and cultures like a pro.', '<h2>Traveling Abroad for the First Time?</h2><p>International travel can be both exciting and overwhelming.</p><h3>1. Check Passport Validity</h3><p>Many countries require your passport to be valid for at least 6 months beyond your travel dates.</p><h3>2. Research Visa Requirements</h3><p>Some destinations offer visa-on-arrival, while others require advance applications.</p>', 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800', 'fcfee9c2-1794-4aa5-8bf4-0fa8cb6f7449', '["tips", "international", "beginners"]', 'published', 'Travel Team', '2026-02-27 09:43:10.905303+00', NULL, '2026-03-01 09:43:10.905303+00'),
+('441524eb-6417-407a-b62d-cef1237bbebf', 'Top 5 Budget-Friendly Destinations for 2026', 'top-5-budget-friendly-destinations-2026', 'Dreaming of a vacation that wont break the bank? These stunning destinations offer incredible experiences at a fraction of the cost.', '<h2>Travel More, Spend Less</h2><p>You dont need a massive budget to explore the world.</p><h3>1. Vietnam</h3><p>World-class experiences for under $40/day.</p><h3>2. Portugal</h3><p>Stunning coastlines, rich history, and incredible cuisine at lower prices.</p>', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800', '1994ecc8-0228-4491-9fa7-00d150bd89bc', '["budget", "destinations", "2026"]', 'published', 'Travel Team', '2026-02-24 09:43:10.905303+00', NULL, '2026-03-01 09:43:10.905303+00'),
+('4d5df5a6-c5a4-4340-815f-61a933028809', 'Exploring the Magic of Santorini: A Travel Diary', 'exploring-magic-of-santorini', 'White-washed buildings, stunning sunsets, and crystal-clear waters.', '<h2>A Week in Paradise</h2><p>Santorini has been on my bucket list for years, and it did not disappoint.</p>', 'https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=800', '6d5340c9-e7dc-45c6-aa19-39688f54a566', '["santorini", "greece", "destinations", "diary"]', 'published', 'Sarah Mitchell', '2026-02-26 09:43:10.905303+00', NULL, '2026-03-01 09:43:10.905303+00'),
+('c33a33f7-5562-40c4-8d1f-f389c2e99562', 'The Ultimate Dubai Travel Guide for 2026', 'ultimate-dubai-travel-guide-2026', 'From towering skyscrapers to ancient souks, Dubai blends tradition and futurism like no other city.', '<h2>Welcome to the City of the Future</h2><p>Dubai is a city that defies expectations at every turn.</p>', 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800', '6d5340c9-e7dc-45c6-aa19-39688f54a566', '["dubai", "guide", "destinations"]', 'published', 'Travel Team', '2026-02-22 09:43:10.905303+00', NULL, '2026-03-01 09:43:10.905303+00'),
+('1c6ffa04-248a-4732-97e4-57ef4cb3f0e5', 'How to Find the Cheapest Flights: A Complete Guide', 'how-to-find-cheapest-flights-guide', 'Unlock the secrets to scoring the best flight deals with these proven strategies.', '<h2>Stop Overpaying for Flights</h2><p>Flight prices can vary dramatically depending on when and how you book.</p>', 'https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=800', '9ed6ef1d-b5e1-4b2a-8eb1-6a113d2bc08f', '["flights", "deals", "tips"]', 'published', 'Travel Team', '2026-03-01 10:05:15.176+00', NULL, '2026-03-01 09:43:10.905303+00')
+ON CONFLICT (id) DO NOTHING;
+
+-- Insert popular_routes
+INSERT INTO public.popular_routes (id, from_code, to_code, from_city, to_city, search_count, lowest_price, currency, airline, duration, stops, last_searched_at, created_at) VALUES
+('58612889-1634-4a08-832b-6be035f8352d', 'DAC', 'CGP', 'Dhaka', 'Chittagong', 38, 4500, 'BDT', 'BG', '45m', 0, '2026-03-03 13:58:40.627823+00', '2026-03-03 13:58:40.627823+00'),
+('1280e38f-048e-49dd-8ddb-44bc34a11008', 'DAC', 'KUL', 'Dhaka', 'Kuala Lumpur', 25, 28500, 'BDT', 'MH', '4h 15m', 0, '2026-03-03 13:58:40.627823+00', '2026-03-03 13:58:40.627823+00'),
+('65df622b-4b21-4ffa-a424-b7ef2b0b7029', 'DAC', 'DXB', 'DAC', 'DXB', 49, 28217, 'INR', 'AI', '8h 30m', 1, '2026-03-08 10:49:21.676184+00', '2026-03-03 13:55:25.780713+00'),
+('bd8c88da-2daa-4da7-a9ef-593d070e081e', 'DAC', 'CKG', 'DAC', 'CKG', 127, 24953, 'INR', 'MU', '17h 30m', 1, '2026-03-08 17:41:08.363734+00', '2026-03-03 18:27:42.29487+00'),
+('263188a7-0dd1-4610-8f08-7526f867342a', 'DAC', 'BKK', 'DAC', 'DAC', 23, 22800, 'BDT', 'TG', '3h 30m', 0, '2026-03-08 17:48:05.017973+00', '2026-03-03 13:58:40.627823+00'),
+('19d11d50-eed4-492c-b46f-ef03229fd8a4', 'DAC', 'CXB', 'DAC', 'CXB', 41, 5049, 'BDT', 'BS', '1h 5m', 0, '2026-03-05 21:39:27.494046+00', '2026-03-03 13:58:40.627823+00'),
+('7ba08535-90fc-4dd1-9b25-c64742456e79', 'DAC', 'SIN', 'DAC', 'SIN', 16, 31200, 'BDT', 'SQ', '4h 45m', 0, '2026-03-04 13:28:36.503955+00', '2026-03-03 13:58:40.627823+00'),
+('3aad3311-3037-4232-bc99-0f05c0f3db50', 'DAC', 'DEL', 'DAC', 'DEL', 63, 10720, 'INR', '6E', '16h 10m', 1, '2026-03-07 21:34:04.111952+00', '2026-03-07 16:27:37.090335+00'),
+('5561811f-f33c-4937-9575-354e2ae1a665', 'DAC', 'CCU', 'DAC', 'CCU', 42, 6259, 'INR', '6E', '1h 5m', 0, '2026-03-07 21:53:11.216374+00', '2026-03-06 20:17:07.88747+00'),
+('c75ed1f3-220e-49f5-83cb-41b64b6fe915', 'DAC', 'CAN', 'DAC', 'CAN', 33, 22063, 'INR', '6E', '7h 50m', 1, '2026-03-08 16:53:09.579912+00', '2026-03-04 15:07:36.975762+00')
+ON CONFLICT (id) DO NOTHING;
+
+-- Insert tripjack_cities (sample)
+INSERT INTO public.tripjack_cities (id, city_name, country_name, type, full_region_name, created_at) VALUES
+(1742, 'SARNY', 'UKRAINE', 'CITY', 'SARNY, RIVNE OBLAST, UKRAINE', '2026-03-06 14:18:14.266711+00'),
+(1753, 'SHIMANTO', 'JAPAN', 'CITY', 'SHIMANTO, KOCHI PREFECTURE, JAPAN', '2026-03-06 14:18:14.266711+00'),
+(1792, 'HUBBARDS', 'CANADA', 'CITY', 'HUBBARDS, NOVA SCOTIA, CANADA', '2026-03-06 14:18:14.266711+00')
+ON CONFLICT (id) DO NOTHING;

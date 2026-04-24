@@ -1,0 +1,1 @@
+DELETE FROM tour_search_cache WHERE cache_key ILIKE '%negara%';

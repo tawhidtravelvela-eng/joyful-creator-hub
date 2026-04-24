@@ -1,0 +1,1 @@
+DELETE FROM city_intros WHERE language = 'route_tips';
