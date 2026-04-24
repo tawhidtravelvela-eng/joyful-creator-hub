@@ -1,1 +1,0 @@
-UPDATE api_settings SET settings = jsonb_set(settings, '{environment}', '"test"') WHERE provider = 'tripjack_flight';

@@ -1,1 +1,0 @@
-UPDATE api_settings SET settings = jsonb_set(COALESCE(settings, '{}'::jsonb), '{environment}', '"test"') WHERE provider = 'hotelston_hotel';

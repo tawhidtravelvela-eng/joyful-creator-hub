@@ -1,1 +1,0 @@
-TRUNCATE TABLE public.tripjack_cities;

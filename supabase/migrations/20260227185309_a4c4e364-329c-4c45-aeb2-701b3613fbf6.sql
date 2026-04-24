@@ -1,1 +1,0 @@
-ALTER TABLE public.flights ADD COLUMN markup_percentage numeric NOT NULL DEFAULT 0;

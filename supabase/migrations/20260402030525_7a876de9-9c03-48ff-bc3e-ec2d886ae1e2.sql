@@ -1,1 +1,0 @@
-DELETE FROM transfer_route_cache WHERE route_key LIKE '%singapore,_%';

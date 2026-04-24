@@ -1,1 +1,0 @@
-UPDATE api_settings SET settings = jsonb_set(settings::jsonb, '{environment}', '"production"') WHERE provider = 'tripjack_flight';

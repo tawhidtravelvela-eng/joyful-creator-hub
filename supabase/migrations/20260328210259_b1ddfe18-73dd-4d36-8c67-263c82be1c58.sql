@@ -1,1 +1,0 @@
-DELETE FROM public.tripjack_hotels WHERE unica_id IS NOT NULL AND unica_id::text != tj_hotel_id::text

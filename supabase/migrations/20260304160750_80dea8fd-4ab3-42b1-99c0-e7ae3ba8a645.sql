@@ -1,1 +1,0 @@
-ALTER TABLE public.bookings ADD COLUMN IF NOT EXISTS confirmation_data jsonb DEFAULT '{}'::jsonb;

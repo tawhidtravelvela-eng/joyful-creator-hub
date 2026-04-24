@@ -1,1 +1,0 @@
-UPDATE public.tripjack_sync_state SET status = 'paused', updated_at = now() WHERE sync_type = 'hotels' AND status = 'syncing';

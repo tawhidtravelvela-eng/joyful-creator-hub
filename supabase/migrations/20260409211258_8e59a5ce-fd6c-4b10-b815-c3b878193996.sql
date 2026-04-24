@@ -1,1 +1,0 @@
-TRUNCATE TABLE public.tour_search_cache;

@@ -1,1 +1,0 @@
-DELETE FROM transfer_route_cache WHERE pricing_source = 'PRODUCT_MATCH';
